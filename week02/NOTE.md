@@ -172,7 +172,7 @@ unicode 兼容ASCII (字符集 https://en.wikipedia.org/wiki/Unicode https://www
 
 The terminal symbols of this grammar are all composed of characters in the Unicode Basic Multilingual Plane (BMP).
 
-InputElement
+InputElement (所有)
   whitespace  // 空格
   LineTerminator // 换行符
   Comment // 注释
@@ -190,9 +190,37 @@ Type
 Number
 
     IEEE 754 Double Float
+    不允许有Leading Zero
+    八进制 0o11 => 9
+    16进制 0xFF => 255
 
+    10进制 12.3e3 => 1230 .3 0.3 
+
+    SAFE INTEGER
+
+    FLOAT COMPARE
+    Math(0.1 + 0.2 - 0.3) <= Number.EPSILON
+    精确比较 ： 转成整数
 String
+    范围
+        * ASCII
+        * Unicode
+        * UCS U+0000 U+FFFF (BMP的范围)
+        * GB 
+           * GB 2312
+           * GBK(GBK13000)
+           * GB1830
+        * ISO-8859
+        * BIG5
 
+        Encoding
+        UTF
+
+    Character
+    CodePoint
+    Encoding
+
+    3 .toString(2) => 11
 Boolean
 
 Object
@@ -211,4 +239,11 @@ Symbol
 2.写一个 UTF-8 Encoding 的函数
 
 3.写一个正则表达式，匹配所有的字符串直接量，单引号和双引号
+
+
+RegLiteral
+var a;
+a
+/a/;
+    
     
